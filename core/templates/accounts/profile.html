@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}پروفایل{% endblock %}
+{% block content %}
+<h2>پروفایل کاربری</h2>
+<p><strong>نام کاربری:</strong> {{ profile.user.username }}</p>
+<p><strong>نقش:</strong> {{ profile.get_role_display }}</p>
+<p><strong>تلفن:</strong> {{ profile.phone|default:"-" }}</p>
+{% endblock %}

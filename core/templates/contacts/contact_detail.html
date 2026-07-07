@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}{{ contact.full_name }}{% endblock %}
+{% block content %}
+<h2>{{ contact.full_name }}</h2>
+<p><strong>شرکت:</strong> {{ contact.company|default:"-" }}</p>
+<p><strong>سمت:</strong> {{ contact.job_title|default:"-" }}</p>
+<p><strong>ایمیل:</strong> {{ contact.email|default:"-" }}</p>
+<p><strong>تلفن:</strong> {{ contact.phone|default:"-" }}</p>
+<h3>معاملات مرتبط</h3>
+<ul>
+    {% for deal in contact.deals.all %}
+    <li><a href="{% url 'deal-detail' deal.pk %}">{{ deal.title }}</a></li>
+    {% empty %}
+    <li>معامله‌ای ثبت نشده.</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'contact-list' %}">بازگشت به لیست</a>
+{% endblock %}

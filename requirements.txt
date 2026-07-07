@@ -1,0 +1,23 @@
+# main 
+Django>4.2,<4.3
+# django-taggit
+requests
+# django-debug-toolbar==4.2.0
+pillow==10.2.0
+
+# # database 
+# mysqlclient
+
+# # env 
+# python-decouple==3.8
+
+# # api
+# djangorestframework
+# markdown
+# django-filter
+# djangorestframework-simplejwt
+# django-taggit-serializer
+# django-cors-headers
+
+# # api doc
+# drf-yasg[validation]

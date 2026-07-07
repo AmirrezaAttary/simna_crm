@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}معاملات{% endblock %}
+{% block content %}
+<h2>لیست معاملات</h2>
+<table>
+    <tr>
+        <th>عنوان</th><th>مرحله</th><th>مبلغ</th><th>مسئول</th><th>تاریخ بسته‌شدن</th>
+    </tr>
+    {% for deal in deals %}
+    <tr>
+        <td><a href="{% url 'deal-detail' deal.pk %}">{{ deal.title }}</a></td>
+        <td>{{ deal.stage.name }}</td>
+        <td>{{ deal.amount }} {{ deal.currency }}</td>
+        <td>{{ deal.owner }}</td>
+        <td>{{ deal.expected_close_date|default:"-" }}</td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="5">هنوز معامله‌ای ثبت نشده است.</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}

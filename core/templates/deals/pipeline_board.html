@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}پایپ‌لاین{% endblock %}
+{% block content %}
+<h2>پایپ‌لاین: {{ pipeline.name|default:"تعریف نشده" }}</h2>
+<div class="board">
+    {% for stage in stages %}
+    <div class="stage-column">
+        <h4>{{ stage.name }} ({{ stage.deals.count }})</h4>
+        {% for deal in stage.deals.all %}
+        <div class="deal-card">
+            <a href="{% url 'deal-detail' deal.pk %}">{{ deal.title }}</a><br>
+            {{ deal.amount }} {{ deal.currency }}
+        </div>
+        {% endfor %}
+    </div>
+    {% empty %}
+    <p>هیچ پایپ‌لاینی تعریف نشده. از پنل ادمین یک Pipeline و Stage بسازید.</p>
+    {% endfor %}
+</div>
+{% endblock %}
