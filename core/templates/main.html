@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>داشبورد | سیمنا CRM</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/material-icons@1.13.12/iconfont/material-icons.min.css">
+<style>
+  * { font-family: 'Vazirmatn', sans-serif; }
+  body { background: #f4f6f9; }
+  .scrollbar-thin::-webkit-scrollbar { width: 5px; }
+  .scrollbar-thin::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 10px; }
+</style>
+</head>
+<body class="text-sm text-gray-700">
+
+<div class="flex h-screen overflow-hidden">
+
+  <!-- Sidebar -->
+  <aside class="w-64 bg-white border-l border-gray-200 flex flex-col">
+    <!-- Logo -->
+    <div class="h-16 flex items-center justify-center border-b border-gray-100">
+      <span class="text-lg font-bold text-indigo-600">سیمنا CRM</span>
+    </div>
+
+    <!-- Menu -->
+    <nav class="flex-1 overflow-y-auto scrollbar-thin py-3 px-2 space-y-1">
+      <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-indigo-50 text-indigo-600 font-medium">
+        <span class="material-icons text-lg">dashboard</span>
+        داشبورد
+      </a>
+      <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 text-gray-600">
+        <span class="material-icons text-lg">people</span>
+        مشتریان
+      </a>
+      <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 text-gray-600">
+        <span class="material-icons text-lg">shopping_cart</span>
+        فروش
+      </a>
+      <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 text-gray-600">
+        <span class="material-icons text-lg">sync</span>
+        اشتراک‌ها
+      </a>
+      <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 text-gray-600">
+        <span class="material-icons text-lg">receipt_long</span>
+        هزینه‌ها
+      </a>
+      <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 text-gray-600">
+        <span class="material-icons text-lg">description</span>
+        قراردادها
+      </a>
+      <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 text-gray-600">
+        <span class="material-icons text-lg">card_membership</span>
+        باشگاه مشتریان
+      </a>
+      <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 text-gray-600">
+        <span class="material-icons text-lg">account_balance</span>
+        بانک‌ها
+      </a>
+      <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 text-gray-600">
+        <span class="material-icons text-lg">folder</span>
+        پروژه‌ها
+      </a>
+      <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 text-gray-600">
+        <span class="material-icons text-lg">shopping_basket</span>
+        خرید
+      </a>
+      <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 text-gray-600">
+        <span class="material-icons text-lg">inventory_2</span>
+        انبار
+      </a>
+      <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 text-gray-600">
+        <span class="material-icons text-lg">task_alt</span>
+        وظایف
+      </a>
+      <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 text-gray-600">
+        <span class="material-icons text-lg">support_agent</span>
+        پشتیبانی
+      </a>
+      <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 text-gray-600">
+        <span class="material-icons text-lg">person_add</span>
+        مشتریان بالقوه
+      </a>
+      <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 text-gray-600">
+        <span class="material-icons text-lg">assignment</span>
+        فرم‌های دریافتی
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main -->
+  <div class="flex-1 flex flex-col overflow-hidden">
+
+    <!-- Header -->
+    <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-6">
+      <div class="flex items-center gap-2 bg-gray-50 rounded-lg px-3 py-2 w-72">
+        <span class="material-icons text-gray-400 text-lg">search</span>
+        <input type="text" placeholder="جستجو..." class="bg-transparent outline-none text-sm w-full">
+      </div>
+      <div class="flex items-center gap-4">
+        <button class="relative">
+          <span class="material-icons text-gray-500">notifications</span>
+          <span class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] rounded-full w-4 h-4 flex items-center justify-center">3</span>
+        </button>
+        <button class="relative">
+          <span class="material-icons text-gray-500">mail</span>
+        </button>
+        <div class="flex items-center gap-2">
+          <img src="https://i.pravatar.cc/40" class="w-9 h-9 rounded-full">
+          <span class="font-medium text-gray-700">کاربر ادمین</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <main class="flex-1 overflow-y-auto scrollbar-thin p-6 space-y-6">
+
+      <!-- Stat Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-white rounded-xl p-5 shadow-sm flex items-center justify-between">
+          <div>
+            <p class="text-xs text-gray-400 mb-1">وظایف تمام‌نشده</p>
+            <p class="text-2xl font-bold text-gray-800">24</p>
+          </div>
+          <div class="bg-indigo-50 text-indigo-500 rounded-full w-11 h-11 flex items-center justify-center">
+            <span class="material-icons">task</span>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl p-5 shadow-sm flex items-center justify-between">
+          <div>
+            <p class="text-xs text-gray-400 mb-1">پروژه در حال پیشرفت</p>
+            <p class="text-2xl font-bold text-gray-800">12</p>
+          </div>
+          <div class="bg-green-50 text-green-500 rounded-full w-11 h-11 flex items-center justify-center">
+            <span class="material-icons">folder_open</span>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl p-5 shadow-sm flex items-center justify-between">
+          <div>
+            <p class="text-xs text-gray-400 mb-1">مشتریان بالقوه تبدیل‌شده</p>
+            <p class="text-2xl font-bold text-gray-800">8</p>
+          </div>
+          <div class="bg-orange-50 text-orange-500 rounded-full w-11 h-11 flex items-center justify-center">
+            <span class="material-icons">person_add</span>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl p-5 shadow-sm flex items-center justify-between">
+          <div>
+            <p class="text-xs text-gray-400 mb-1">فاکتور در انتظار پرداخت</p>
+            <p class="text-2xl font-bold text-gray-800">17</p>
+          </div>
+          <div class="bg-red-50 text-red-500 rounded-full w-11 h-11 flex items-center justify-center">
+            <span class="material-icons">receipt</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Orders Table -->
+      <div class="bg-white rounded-xl shadow-sm">
+        <div class="flex items-center justify-between px-5 py-4 border-b border-gray-100">
+          <h2 class="font-semibold text-gray-800">سفارشات در شرف تحویل</h2>
+          <button class="text-indigo-500 text-xs font-medium">مشاهده همه</button>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-right">
+            <thead>
+              <tr class="text-xs text-gray-400 border-b border-gray-100">
+                <th class="py-3 px-5 font-medium">شماره سفارش خرید</th>
+                <th class="py-3 px-5 font-medium">تاریخ سفارش</th>
+                <th class="py-3 px-5 font-medium">فروشنده</th>
+                <th class="py-3 px-5 font-medium">ارزش PO</th>
+                <th class="py-3 px-5 font-medium">ارزش مالیاتی</th>
+                <th class="py-3 px-5 font-medium">تاریخ تحویل</th>
+                <th class="py-3 px-5 font-medium">وضعیت تحویل</th>
+              </tr>
+            </thead>
+            <tbody class="text-sm">
+              <tr class="border-b border-gray-50 hover:bg-gray-50">
+                <td class="py-3 px-5">PO-1024</td>
+                <td class="py-3 px-5">۱۴۰۵/۰۴/۱۰</td>
+                <td class="py-3 px-5">شرکت آریا صنعت</td>
+                <td class="py-3 px-5">۱۲,۵۰۰,۰۰۰</td>
+                <td class="py-3 px-5">۱,۱۲۵,۰۰۰</td>
+                <td class="py-3 px-5">۱۴۰۵/۰۴/۲۰</td>
+                <td class="py-3 px-5"><span class="bg-yellow-50 text-yellow-600 text-xs px-2 py-1 rounded-full">در انتظار</span></td>
+              </tr>
+              <tr class="border-b border-gray-50 hover:bg-gray-50">
+                <td class="py-3 px-5">PO-1025</td>
+                <td class="py-3 px-5">۱۴۰۵/۰۴/۱۱</td>
+                <td class="py-3 px-5">پارس تجارت</td>
+                <td class="py-3 px-5">۸,۲۰۰,۰۰۰</td>
+                <td class="py-3 px-5">۷۳۸,۰۰۰</td>
+                <td class="py-3 px-5">۱۴۰۵/۰۴/۱۸</td>
+                <td class="py-3 px-5"><span class="bg-green-50 text-green-600 text-xs px-2 py-1 rounded-full">تحویل شده</span></td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="py-3 px-5">PO-1026</td>
+                <td class="py-3 px-5">۱۴۰۵/۰۴/۱۲</td>
+                <td class="py-3 px-5">صنایع البرز</td>
+                <td class="py-3 px-5">۲۱,۰۰۰,۰۰۰</td>
+                <td class="py-3 px-5">۱,۸۹۰,۰۰۰</td>
+                <td class="py-3 px-5">۱۴۰۵/۰۴/۲۵</td>
+                <td class="py-3 px-5"><span class="bg-red-50 text-red-600 text-xs px-2 py-1 rounded-full">به تعویق افتاده</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Bottom Widgets -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-white rounded-xl shadow-sm p-5">
+          <h3 class="font-semibold text-gray-800 mb-3 text-sm">موارد کارهای من</h3>
+          <ul class="space-y-3 text-xs text-gray-500">
+            <li class="flex items-center justify-between"><span>پیگیری قرارداد شماره ۴۵۶</span><span class="text-gray-400">۲ روز</span></li>
+            <li class="flex items-center justify-between"><span>تماس با مشتری جدید</span><span class="text-gray-400">امروز</span></li>
+            <li class="flex items-center justify-between"><span>ارسال پیش‌فاکتور</span><span class="text-gray-400">فردا</span></li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-xl shadow-sm p-5">
+          <h3 class="font-semibold text-gray-800 mb-3 text-sm">مرور فاکتور</h3>
+          <div class="space-y-2 text-xs">
+            <div class="flex justify-between"><span class="text-gray-500">پرداخت‌شده</span><span class="font-medium">۶۴٪</span></div>
+            <div class="w-full bg-gray-100 rounded-full h-2"><div class="bg-indigo-500 h-2 rounded-full" style="width:64%"></div></div>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl shadow-sm p-5">
+          <h3 class="font-semibold text-gray-800 mb-3 text-sm">مرور پیش‌فاکتور</h3>
+          <div class="space-y-2 text-xs">
+            <div class="flex justify-between"><span class="text-gray-500">تایید شده</span><span class="font-medium">۴۲٪</span></div>
+            <div class="w-full bg-gray-100 rounded-full h-2"><div class="bg-green-500 h-2 rounded-full" style="width:42%"></div></div>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl shadow-sm p-5">
+          <h3 class="font-semibold text-gray-800 mb-3 text-sm">مرور پروپوزال</h3>
+          <div class="space-y-2 text-xs">
+            <div class="flex justify-between"><span class="text-gray-500">در حال بررسی</span><span class="font-medium">۲۸٪</span></div>
+            <div class="w-full bg-gray-100 rounded-full h-2"><div class="bg-orange-500 h-2 rounded-full" style="width:28%"></div></div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+</body>
+</html>
