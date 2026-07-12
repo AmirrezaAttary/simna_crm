@@ -1,21 +1,67 @@
 {% extends "base.html" %}
 {% block title %}معاملات{% endblock %}
 {% block content %}
-<h2>لیست معاملات</h2>
-<table>
-    <tr>
-        <th>عنوان</th><th>مرحله</th><th>مبلغ</th><th>مسئول</th><th>تاریخ بسته‌شدن</th>
-    </tr>
-    {% for deal in deals %}
-    <tr>
-        <td><a href="{% url 'deal-detail' deal.pk %}">{{ deal.title }}</a></td>
-        <td>{{ deal.stage.name }}</td>
-        <td>{{ deal.amount }} {{ deal.currency }}</td>
-        <td>{{ deal.owner }}</td>
-        <td>{{ deal.expected_close_date|default:"-" }}</td>
-    </tr>
-    {% empty %}
-    <tr><td colspan="5">هنوز معامله‌ای ثبت نشده است.</td></tr>
-    {% endfor %}
-</table>
+
+<div class="flex items-center justify-between">
+  <div class="flex items-center gap-4">
+    <div class="w-11 h-11 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+      <span class="material-icons">handshake</span>
+    </div>
+    <div>
+      <h2 class="text-lg font-bold text-gray-800">لیست معاملات</h2>
+      <p class="text-xs text-gray-400 mt-0.5">{{ deals|length }} معامله در جریان</p>
+    </div>
+  </div>
+  <a href="{% url 'deal-create' %}"
+    class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2.5 rounded-lg text-sm font-medium flex items-center gap-1.5 transition">
+    <span class="material-icons text-lg">add</span>
+    معامله جدید
+  </a>
+</div>
+
+<div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+  <table class="w-full text-sm">
+    <thead>
+      <tr class="bg-gray-50 text-gray-500 text-xs">
+        <th class="px-5 py-3 text-right font-medium">عنوان</th>
+        <th class="px-5 py-3 text-right font-medium">مرحله</th>
+        <th class="px-5 py-3 text-right font-medium">مبلغ</th>
+        <th class="px-5 py-3 text-right font-medium">مسئول</th>
+        <th class="px-5 py-3 text-right font-medium">تاریخ بسته‌شدن</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for deal in deals %}
+      <tr class="border-b border-gray-100 last:border-0 hover:bg-gray-50 transition">
+        <td class="px-5 py-3.5">
+          <a href="{% url 'deal-detail' deal.pk %}" class="font-medium text-gray-700 hover:text-indigo-600 transition">
+            {{ deal.title }}
+          </a>
+        </td>
+        <td class="px-5 py-3.5">
+          <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-indigo-50 text-indigo-700">
+            {{ deal.stage.name }}
+          </span>
+        </td>
+        <td class="px-5 py-3.5 font-medium text-gray-700">{{ deal.amount }} <span class="text-gray-400 font-normal">{{ deal.currency }}</span></td>
+        <td class="px-5 py-3.5 text-gray-500">{{ deal.owner }}</td>
+        <td class="px-5 py-3.5 text-gray-500">{{ deal.expected_close_date|default:"-" }}</td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="5">
+          <div class="flex flex-col items-center justify-center py-16 text-center">
+            <div class="w-16 h-16 rounded-2xl bg-gray-50 text-gray-300 flex items-center justify-center mb-3">
+              <span class="material-icons text-3xl">handshake</span>
+            </div>
+            <p class="text-sm text-gray-500 mb-4">هنوز معامله‌ای ثبت نشده است.</p>
+            <a href="{% url 'deal-create' %}" class="text-sm text-indigo-600 font-medium hover:underline">ثبت اولین معامله</a>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
 {% endblock %}

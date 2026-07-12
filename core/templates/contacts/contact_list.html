@@ -1,18 +1,64 @@
 {% extends "base.html" %}
 {% block title %}مخاطبین{% endblock %}
 {% block content %}
-<h2>لیست مخاطبین</h2>
-<table>
-    <tr><th>نام</th><th>شرکت</th><th>ایمیل</th><th>تلفن</th></tr>
-    {% for contact in contacts %}
-    <tr>
-        <td><a href="{% url 'contact-detail' contact.pk %}">{{ contact.full_name }}</a></td>
-        <td>{{ contact.company|default:"-" }}</td>
-        <td>{{ contact.email|default:"-" }}</td>
-        <td>{{ contact.phone|default:"-" }}</td>
-    </tr>
-    {% empty %}
-    <tr><td colspan="4">مخاطبی ثبت نشده است.</td></tr>
-    {% endfor %}
-</table>
+
+<div class="flex items-center justify-between">
+  <div class="flex items-center gap-4">
+    <div class="w-11 h-11 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+      <span class="material-icons">contacts</span>
+    </div>
+    <div>
+      <h2 class="text-lg font-bold text-gray-800">لیست مخاطبین</h2>
+      <p class="text-xs text-gray-400 mt-0.5">{{ contacts|length }} مخاطب ثبت شده</p>
+    </div>
+  </div>
+  <a href="{% url 'contact-create' %}"
+    class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2.5 rounded-lg text-sm font-medium flex items-center gap-1.5 transition">
+    <span class="material-icons text-lg">add</span>
+    مخاطب جدید
+  </a>
+</div>
+
+<div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+  <table class="w-full text-sm">
+    <thead>
+      <tr class="bg-gray-50 text-gray-500 text-xs">
+        <th class="px-5 py-3 text-right font-medium">نام</th>
+        <th class="px-5 py-3 text-right font-medium">شرکت</th>
+        <th class="px-5 py-3 text-right font-medium">ایمیل</th>
+        <th class="px-5 py-3 text-right font-medium">تلفن</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for contact in contacts %}
+      <tr class="border-b border-gray-100 last:border-0 hover:bg-gray-50 transition">
+        <td class="px-5 py-3.5">
+          <a href="{% url 'contact-detail' contact.pk %}" class="flex items-center gap-3 group">
+            <div class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 text-xs font-bold flex items-center justify-center shrink-0">
+              {{ contact.full_name|slice:":1"|upper }}
+            </div>
+            <span class="font-medium text-gray-700 group-hover:text-indigo-600 transition">{{ contact.full_name }}</span>
+          </a>
+        </td>
+        <td class="px-5 py-3.5 text-gray-500">{{ contact.company|default:"-" }}</td>
+        <td class="px-5 py-3.5 text-gray-500">{{ contact.email|default:"-" }}</td>
+        <td class="px-5 py-3.5 text-gray-500">{{ contact.phone|default:"-" }}</td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="4">
+          <div class="flex flex-col items-center justify-center py-16 text-center">
+            <div class="w-16 h-16 rounded-2xl bg-gray-50 text-gray-300 flex items-center justify-center mb-3">
+              <span class="material-icons text-3xl">contacts</span>
+            </div>
+            <p class="text-sm text-gray-500 mb-4">مخاطبی ثبت نشده است.</p>
+            <a href="{% url 'contact-create' %}" class="text-sm text-indigo-600 font-medium hover:underline">افزودن مخاطب جدید</a>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
 {% endblock %}

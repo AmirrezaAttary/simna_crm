@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}معامله جدید{% endblock %}
+{% block content %}
+
+<div class="flex items-center gap-4">
+  <a href="{% url 'deal-list' %}" class="w-9 h-9 rounded-lg bg-white border border-gray-200 flex items-center justify-center text-gray-400 hover:text-indigo-600 hover:border-indigo-200 transition">
+    <span class="material-icons text-lg">arrow_forward</span>
+  </a>
+  <div>
+    <h2 class="text-lg font-bold text-gray-800">معامله جدید</h2>
+    <p class="text-xs text-gray-400 mt-0.5">اطلاعات معامله را وارد کنید</p>
+  </div>
+</div>
+
+<div class="max-w-lg mx-auto w-full bg-white rounded-2xl border border-gray-200 shadow-sm p-8">
+  <form method="post" class="space-y-5">
+    {% csrf_token %}
+
+    {% if form %}
+      {% for field in form %}
+      <div>
+        <label class="text-xs font-medium text-gray-500 mb-1.5 block">{{ field.label }}</label>
+        {{ field }}
+        {% if field.errors %}
+        <p class="text-xs text-rose-500 mt-1">{{ field.errors|first }}</p>
+        {% endif %}
+      </div>
+      {% endfor %}
+    {% else %}
+      <div>
+        <label class="text-xs font-medium text-gray-500 mb-1.5 block">عنوان معامله</label>
+        <input type="text" name="title" placeholder="مثلاً قرارداد سالانه شرکت آریا"
+          class="w-full border border-gray-200 rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-100 focus:border-indigo-400 transition">
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="text-xs font-medium text-gray-500 mb-1.5 block">مبلغ</label>
+          <input type="number" name="amount"
+            class="w-full border border-gray-200 rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-100 focus:border-indigo-400 transition">
+        </div>
+        <div>
+          <label class="text-xs font-medium text-gray-500 mb-1.5 block">واحد پول</label>
+          <input type="text" name="currency" placeholder="IRR"
+            class="w-full border border-gray-200 rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-100 focus:border-indigo-400 transition">
+        </div>
+      </div>
+      <div>
+        <label class="text-xs font-medium text-gray-500 mb-1.5 block">مخاطب</label>
+        <select name="contact"
+          class="w-full border border-gray-200 rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-100 focus:border-indigo-400 transition">
+        </select>
+      </div>
+      <div>
+        <label class="text-xs font-medium text-gray-500 mb-1.5 block">تاریخ بسته‌شدن مورد انتظار</label>
+        <input type="date" name="expected_close_date"
+          class="w-full border border-gray-200 rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-100 focus:border-indigo-400 transition">
+      </div>
+      <div>
+        <label class="text-xs font-medium text-gray-500 mb-1.5 block">توضیحات</label>
+        <textarea name="description" rows="3"
+          class="w-full border border-gray-200 rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-100 focus:border-indigo-400 transition resize-none"></textarea>
+      </div>
+    {% endif %}
+
+    <div class="flex items-center gap-3 pt-2">
+      <button type="submit"
+        class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2.5 rounded-lg text-sm font-medium transition">
+        ثبت معامله
+      </button>
+      <a href="{% url 'deal-list' %}"
+        class="px-4 py-2.5 rounded-lg text-sm font-medium text-gray-500 hover:bg-gray-50 transition">
+        انصراف
+      </a>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

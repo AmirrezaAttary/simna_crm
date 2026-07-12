@@ -1,18 +1,81 @@
 {% extends "base.html" %}
 {% block title %}تسک‌های من{% endblock %}
 {% block content %}
-<h2>تسک‌های من</h2>
-<table>
-    <tr><th>عنوان</th><th>اولویت</th><th>سررسید</th><th>وضعیت</th></tr>
-    {% for task in tasks %}
-    <tr>
-        <td>{{ task.title }}</td>
-        <td>{{ task.get_priority_display }}</td>
-        <td>{{ task.due_date|default:"-" }}</td>
-        <td>{% if task.is_done %}انجام شده{% else %}در حال انجام{% endif %}</td>
-    </tr>
-    {% empty %}
-    <tr><td colspan="4">تسکی برای شما ثبت نشده است.</td></tr>
-    {% endfor %}
-</table>
+
+<div class="flex items-center justify-between">
+  <div class="flex items-center gap-4">
+    <div class="w-11 h-11 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+      <span class="material-icons">checklist</span>
+    </div>
+    <div>
+      <h2 class="text-lg font-bold text-gray-800">تسک‌های من</h2>
+      <p class="text-xs text-gray-400 mt-0.5">{{ tasks|length }} تسک ثبت شده</p>
+    </div>
+  </div>
+  <a href="{% url 'task-create' %}"
+    class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2.5 rounded-lg text-sm font-medium flex items-center gap-1.5 transition">
+    <span class="material-icons text-lg">add</span>
+    تسک جدید
+  </a>
+</div>
+
+<div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+  <table class="w-full text-sm">
+    <thead>
+      <tr class="bg-gray-50 text-gray-500 text-xs">
+        <th class="px-5 py-3 text-right font-medium">عنوان</th>
+        <th class="px-5 py-3 text-right font-medium">اولویت</th>
+        <th class="px-5 py-3 text-right font-medium">سررسید</th>
+        <th class="px-5 py-3 text-right font-medium">وضعیت</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for task in tasks %}
+      <tr class="border-b border-gray-100 last:border-0 hover:bg-gray-50 transition">
+        <td class="px-5 py-3.5 font-medium text-gray-700">{{ task.title }}</td>
+        <td class="px-5 py-3.5">
+          {% if task.priority == 'high' %}
+          <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-rose-50 text-rose-700">
+            <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>{{ task.get_priority_display }}
+          </span>
+          {% elif task.priority == 'low' %}
+          <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-600">
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>{{ task.get_priority_display }}
+          </span>
+          {% else %}
+          <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-amber-50 text-amber-700">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>{{ task.get_priority_display }}
+          </span>
+          {% endif %}
+        </td>
+        <td class="px-5 py-3.5 text-gray-500">{{ task.due_date|default:"-" }}</td>
+        <td class="px-5 py-3.5">
+          {% if task.is_done %}
+          <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700">
+            <span class="material-icons text-[13px]">check_circle</span>انجام شده
+          </span>
+          {% else %}
+          <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-indigo-50 text-indigo-700">
+            <span class="material-icons text-[13px]">schedule</span>در حال انجام
+          </span>
+          {% endif %}
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="4">
+          <div class="flex flex-col items-center justify-center py-16 text-center">
+            <div class="w-16 h-16 rounded-2xl bg-gray-50 text-gray-300 flex items-center justify-center mb-3">
+              <span class="material-icons text-3xl">checklist</span>
+            </div>
+            <p class="text-sm text-gray-500 mb-4">تسکی برای شما ثبت نشده است.</p>
+            <a href="{% url 'task-create' %}" class="text-sm text-indigo-600 font-medium hover:underline">ثبت اولین تسک</a>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
 {% endblock %}

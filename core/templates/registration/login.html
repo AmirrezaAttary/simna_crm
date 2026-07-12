@@ -1,10 +1,53 @@
 {% extends "base.html" %}
 {% block title %}ورود{% endblock %}
 {% block content %}
-<h2>ورود به سیستم CRM</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">ورود</button>
-</form>
+
+<div class="min-h-[70vh] flex items-center justify-center">
+  <div class="w-full max-w-sm">
+    <div class="text-center mb-6">
+      <div class="w-14 h-14 rounded-2xl bg-indigo-600 text-white flex items-center justify-center mx-auto mb-4">
+        <span class="material-icons text-2xl">lock</span>
+      </div>
+      <h2 class="text-lg font-bold text-gray-800">ورود به سیستم CRM</h2>
+      <p class="text-xs text-gray-400 mt-1">برای ادامه وارد حساب کاربری خود شوید</p>
+    </div>
+
+    <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-8">
+      <form method="post" class="space-y-5">
+        {% csrf_token %}
+
+        {% if form %}
+          {% for field in form %}
+          <div>
+            <label class="text-xs font-medium text-gray-500 mb-1.5 block">{{ field.label }}</label>
+            {{ field }}
+            {% if field.errors %}
+            <p class="text-xs text-rose-500 mt-1">{{ field.errors|first }}</p>
+            {% endif %}
+          </div>
+          {% endfor %}
+        {% else %}
+          <div>
+            <label class="text-xs font-medium text-gray-500 mb-1.5 block">نام کاربری</label>
+            <input type="text" name="username"
+              class="w-full border border-gray-200 rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-100 focus:border-indigo-400 transition">
+          </div>
+          <div>
+            <label class="text-xs font-medium text-gray-500 mb-1.5 block">رمز عبور</label>
+            <input type="password" name="password"
+              class="w-full border border-gray-200 rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-100 focus:border-indigo-400 transition">
+          </div>
+        {% endif %}
+
+        <button type="submit"
+          class="w-full bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2.5 rounded-lg text-sm font-medium transition">
+          ورود
+        </button>
+      </form>
+    </div>
+
+    <p class="text-center text-xs text-gray-400 mt-6">سیمنا CRM &middot; نسخه داخلی</p>
+  </div>
+</div>
+
 {% endblock %}

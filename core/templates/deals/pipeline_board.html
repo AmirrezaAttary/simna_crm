@@ -1,20 +1,52 @@
 {% extends "base.html" %}
 {% block title %}پایپ‌لاین{% endblock %}
 {% block content %}
-<h2>پایپ‌لاین: {{ pipeline.name|default:"تعریف نشده" }}</h2>
-<div class="board">
-    {% for stage in stages %}
-    <div class="stage-column">
-        <h4>{{ stage.name }} ({{ stage.deals.count }})</h4>
-        {% for deal in stage.deals.all %}
-        <div class="deal-card">
-            <a href="{% url 'deal-detail' deal.pk %}">{{ deal.title }}</a><br>
-            {{ deal.amount }} {{ deal.currency }}
-        </div>
-        {% endfor %}
-    </div>
-    {% empty %}
-    <p>هیچ پایپ‌لاینی تعریف نشده. از پنل ادمین یک Pipeline و Stage بسازید.</p>
-    {% endfor %}
+
+<div class="flex items-center gap-4">
+  <div class="w-11 h-11 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+    <span class="material-icons">view_kanban</span>
+  </div>
+  <div>
+    <h2 class="text-lg font-bold text-gray-800">پایپ‌لاین: {{ pipeline.name|default:"تعریف نشده" }}</h2>
+    <p class="text-xs text-gray-400 mt-0.5">وضعیت معاملات به تفکیک مرحله</p>
+  </div>
 </div>
+
+{% if stages %}
+<div class="flex gap-4 overflow-x-auto pb-2 scrollbar-thin">
+  {% for stage in stages %}
+  {% cycle 'indigo' 'sky' 'violet' 'emerald' 'amber' 'rose' as stage_color silent %}
+  <div class="min-w-[280px] max-w-[280px] shrink-0 bg-gray-50/70 rounded-2xl p-3 flex flex-col">
+    <div class="flex items-center justify-between px-2 py-1.5 mb-2">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-{{ stage_color }}-500"></span>
+        <h4 class="text-sm font-bold text-gray-700">{{ stage.name }}</h4>
+      </div>
+      <span class="text-xs font-medium text-gray-400 bg-white rounded-full px-2 py-0.5 border border-gray-200">{{ stage.deals.count }}</span>
+    </div>
+
+    <div class="space-y-2 min-h-[80px]">
+      {% for deal in stage.deals.all %}
+      <a href="{% url 'deal-detail' deal.pk %}"
+        class="block bg-white rounded-xl border border-gray-100 border-r-4 border-r-{{ stage_color }}-400 p-3.5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition">
+        <p class="text-sm font-medium text-gray-700 mb-1">{{ deal.title }}</p>
+        <p class="text-xs text-gray-400">{{ deal.amount }} {{ deal.currency }}</p>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<div class="bg-white rounded-2xl border border-gray-200 shadow-sm">
+  <div class="flex flex-col items-center justify-center py-16 text-center">
+    <div class="w-16 h-16 rounded-2xl bg-gray-50 text-gray-300 flex items-center justify-center mb-3">
+      <span class="material-icons text-3xl">view_kanban</span>
+    </div>
+    <p class="text-sm text-gray-500 mb-1">هیچ پایپ‌لاینی تعریف نشده.</p>
+    <p class="text-xs text-gray-400">از پنل ادمین یک Pipeline و Stage بسازید.</p>
+  </div>
+</div>
+{% endif %}
+
 {% endblock %}

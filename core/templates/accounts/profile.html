@@ -1,8 +1,51 @@
 {% extends "base.html" %}
 {% block title %}پروفایل{% endblock %}
 {% block content %}
-<h2>پروفایل کاربری</h2>
-<p><strong>نام کاربری:</strong> {{ profile.user.username }}</p>
-<p><strong>نقش:</strong> {{ profile.role.name }}</p>
-<p><strong>تلفن:</strong> {{ profile.phone|default:"-" }}</p>
+
+<div class="flex items-center gap-4">
+  <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+    <span class="material-icons text-2xl">account_circle</span>
+  </div>
+  <div>
+    <h2 class="text-lg font-bold text-gray-800">پروفایل کاربری</h2>
+    <p class="text-xs text-gray-400 mt-0.5">اطلاعات حساب و دسترسی شما</p>
+  </div>
+</div>
+
+<div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+  <div class="h-20 bg-gradient-to-l from-indigo-600 to-indigo-500"></div>
+  <div class="px-8 pb-8">
+    <div class="-mt-10 flex items-end gap-4 mb-6">
+      <div class="w-20 h-20 rounded-2xl bg-white border-4 border-white shadow-sm flex items-center justify-center text-indigo-600 text-2xl font-bold">
+        {{ profile.user.username|slice:":1"|upper }}
+      </div>
+      <div class="pb-1">
+        <p class="text-base font-bold text-gray-800">{{ profile.user.username }}</p>
+        <span class="inline-flex items-center gap-1 mt-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-50 text-indigo-700">
+          <span class="material-icons text-[13px]">verified_user</span>
+          {{ profile.role.name }}
+        </span>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-gray-100 pt-6">
+      <div class="bg-gray-50 rounded-xl p-4">
+        <p class="text-xs text-gray-400 mb-1">نام کاربری</p>
+        <p class="text-sm font-medium text-gray-700">{{ profile.user.username }}</p>
+      </div>
+      <div class="bg-gray-50 rounded-xl p-4">
+        <p class="text-xs text-gray-400 mb-1">نقش</p>
+        <p class="text-sm font-medium text-gray-700">{{ profile.role.name }}</p>
+      </div>
+      <div class="bg-gray-50 rounded-xl p-4 sm:col-span-2">
+        <p class="text-xs text-gray-400 mb-1">تلفن</p>
+        <p class="text-sm font-medium text-gray-700 flex items-center gap-1.5">
+          <span class="material-icons text-[15px] text-gray-400">call</span>
+          {{ profile.phone|default:"ثبت نشده" }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock %}
