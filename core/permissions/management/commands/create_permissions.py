@@ -19,7 +19,7 @@ class Command(BaseCommand):
                 codename=codename,
                 defaults={
                     "name": name,
-                    "oreder": order,
+                    "order": order,
                     "icon":icon,
                     "url_name":url_name
                 }
